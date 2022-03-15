@@ -1,0 +1,41 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+
+        <a href="{% url 'dash' %}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>Compétences</h2>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav col-md-7 p-4 p-lg-0">
+                <a href="{% url 'dash' %}" class="nav-item nav-link">Accueil</a>
+                <a href="{% url 'about' %}" class="nav-item nav-link">A Propos</a>
+                <a href="{% url 'listes' %}" class="nav-item nav-link">Listes</a>
+
+        <form class="d-flex input-group w-auto" action="{% url 'search' %}">
+      <input
+        type="search"
+        class="form-control rounded"
+        placeholder="Rechercher un domaine"
+        aria-label="Search"
+        aria-describedby="search-addon"
+       name="domaine"/>
+      <span class="text-white border-0" id="search-addon">
+        <i class="fas fa-search"></i>
+      </span>
+    </form>
+            </div>
+            <a href="{% url 'ajouter_info' %}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block m-auto">Rejoins-nous<i class="fa fa-arrow-right ms-3"></i></a>
+
+            {% if user.is_authenticated %}
+                 <a  href="{% url 'logout' %}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block ">Déconnexion<i class="fa fa-arrow-right ms-3"></i></a>
+            {% else %}
+                <a  href="{% url 'login' %}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block ">Connexion<i class="fa fa-arrow-right ms-3"></i></a>
+            {% endif %}
+
+        </div>
+
+
+    </nav>
+    <!-- Navbar End -->

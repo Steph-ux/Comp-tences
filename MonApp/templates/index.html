@@ -1,0 +1,43 @@
+
+{% extends 'heriters.html' %}
+{% load static %}
+
+{% block content %}
+    {% include '_navbar.html' %}
+    <form enctype="multipart/form-data" action="" method="post">
+    <div class="card " >
+        <h4 class="mt-4 text-center">Saisissez vos informations</h4>
+         <div class="card-body h6">
+
+              {% csrf_token %}
+               <label for="name">Nom utilisateur :</label>
+                <div class="form-control-text"> {{ form.name}}<br><br></div>
+               <label for="email" >Email :</label>
+              <div class="form-control-email"> {{ form.email }}<br><br></div>
+              <label for="phone">N°Téléphone :</label>
+                <div class="form-control-phone"> {{ form.phone}}<br><br></div>
+               <label for="adresse" >Adresse :</label>
+                <div class="form-control-adresse">{{ form.adresse }}<br><br></div>
+                <label for="image">Image:</label>
+                <div class="form-control-file">{{ form.image}}<br><br></div>
+               <label for="cv" >Cv :</label>
+              <div class="form-control-file">{{ form.cv }}<br><br></div>
+               <label for="domaine"  >Domaine :</label>
+              <div class="form-control-domaine">{{form.domaine }}<br><br></div>
+              <label for="cv" class="" >Description:</label><br>
+              {{ form.desc }}<br><br>
+
+    </div>
+
+          <div class="card-footer">
+                <button class="btn btn-outline-secondary btn-block form-control h3">Envoyer</button>
+          </div>
+    </div>
+    </form>
+
+
+    </form>
+
+
+    {% include '_footer.html' %}
+{% endblock %}

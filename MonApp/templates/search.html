@@ -1,0 +1,44 @@
+{% extends 'heriters.html' %}
+
+{% block content %}
+    {% load static %}
+    {% include '_navbar.html'%}
+        <!-- Header Start -->
+    <div class="container-fluid bg-primary py-5 mb-5 page-header">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white animated slideInDown">Recherche</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="container">
+    <div class="row">
+    {% for domaine in liste_domaine %}
+     <div class=" col-12 col-lg-3 col-md-6 col-xl-3 ">
+               <div class="card mt-3 p-2">
+              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                <a href="{% url 'voir' domaine.name %}"><img src="/media/{{domaine.image }}" class="img-fluid" style="height: 200px"/>
+
+                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+
+              </a></div>
+              <div class="card-body" style="height: 200px">
+                <h5 class="card-title">{{ domaine.name}}</h5>
+
+                <p class="card-text">{{ voir.desc|truncatewords:4}}</p>
+                  <p class="card-text">{{ domaine.domaine}}</p>
+                  <p class="">Mise en ligne il y a {{ domaine.created_at|timesince }}</p>
+
+              </div>
+                   <a href="{% url 'voir' domaine.name %}" class="btn btn-primary">Voir la suite</a>
+            </div>
+            </div>
+        {% endfor %}
+        </div>
+        </div>
+
+
+{% include '_footer.html' %}
+{% endblock %}

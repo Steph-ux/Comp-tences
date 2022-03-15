@@ -1,0 +1,50 @@
+{% extends 'heriters.html' %}
+{% block content %}
+    {% load static %}
+    {% include '_navbar.html' %}
+        <!-- Header Start -->
+    <div class="container-fluid bg-primary py-5 mb-5 page-header">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white animated slideInDown">Inscription</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="container">
+    <div class="col-md-12 mt-5">
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-danger text-center"><strong>{{ message }}</strong></div>
+            {% endfor %}
+        {% endif %}
+
+    <form action="" method="post" novalidate> {% csrf_token %}
+    <div class="card">
+        <div class="card-header text-center"><i class="fas fa-user">Création de compte</i></div>
+          <div class="card-body">
+
+              {{ form}}
+
+          </div>
+          <div class="card-footer">
+              <button class="form-control btn btn-primary btn-block " ><a href="{% url 'login' %}">Créer le compte</a></button>
+          </div><br>
+         <p class="text-center center" > Vous avez déjà un compte ? <a href="{% url 'login' %}">Connexion</a></p>
+    </div>
+    </form>
+
+    </div>
+</div>
+
+    {% include '_footer.html' %}
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+
+    </script>
+{% endblock %}
