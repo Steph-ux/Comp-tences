@@ -1,3 +1,4 @@
+from django import forms
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -62,6 +63,7 @@ def register_user(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             pwd = form.cleaned_data['pwd']
+            pwd_confirm = form.cleaned_data['pwd']
             user = User.objects.create_user(username=username, password=pwd)
             if user is not None:
                 return redirect('login')
@@ -76,6 +78,15 @@ def register_user(request):
     form = Register()
     return render(request, 'register.html', {'form': form})
 
+
+def clean(self):
+    pwd = self.cleaned_data.get('pwd')
+    pwd_confirm = self.cleaned_data.get('pwd_confirm')
+
+    if pwd != pwd_confirm:
+        raise forms.ValidationError("Les mots de passe ne sont pas identiques")
+
+    return self.cleaned_data
 
 def logout_user(request):
     logout(request)
